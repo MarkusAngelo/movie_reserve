@@ -1,0 +1,125 @@
+<header class="masthead">
+  <div
+    id="carouselExampleIndicators"
+    class="carousel slide"
+    data-ride="carousel"
+    data-interval="3000"
+  >
+    <div class="carousel-inner">
+      <div
+        *ngFor="let item of movies; let i = index"
+        class="carousel-item"
+        [ngClass]="{ active: i === 0 }"
+      >
+        <div class="row">
+          <div class="items-center">
+            <div
+              class="description"
+              [style.background-image]="'url(' + item.preview + ')'"
+            >
+              <div class="content">
+                <h1>{{ item.movie_title }}</h1>
+                <section class="a_group">
+                  <p>{{ item.description }}</p>
+                  <a [href]="item.trailer" class="trailer" target="_blank">Watch Trailer</a
+                  ><a routerLink="/reservation" class="reserve">+ Reserve Now</a>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a
+      class="carousel-control-prev"
+      href="#carouselExampleIndicators"
+      role="button"
+      data-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </a>
+    <a
+      class="carousel-control-next"
+      href="#carouselExampleIndicators"
+      role="button"
+      data-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </a>
+  </div>
+</header>
+<!-- trending-->
+<div class="trending-box">
+  <h1>Trending Now</h1>
+  <section class="trending" id="trending">
+    <div class="trending-box" *ngFor="let movie of trending">
+      <article class="card">
+        <img
+          class="card__background"
+          [src]="movie.image"
+          [alt]="movie.movie_title"
+          width="1920"
+          height="2193"
+        />
+        <div class="card__content | flow">
+          <div class="card__content--container | flow">
+            <h2 class="card__title">{{ movie.movie_title }}</h2>
+            <p class="card__description">
+              {{ movie.description }}
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+</div>
+<!-- throwback-->
+<div class="trending-box">
+  <h1>The Classics</h1>
+  <section class="trending" id="trending">
+    <div class="trending-box" *ngFor="let movie of throwback">
+      <article class="card">
+        <img
+          class="card__background"
+          [src]="movie.image"
+          [alt]="movie.movie_title"
+          width="1920"
+          height="2193"
+        />
+        <div class="card__content | flow">
+          <div class="card__content--container | flow">
+            <h2 class="card__title">{{ movie.movie_title }}</h2>
+            <p class="card__description">
+              {{ movie.description }}
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+</div>
+<!----->
+<div class="trending-box">
+  <h1>Critically Acclaimed</h1>
+  <section class="trending" id="trending">
+    <div class="trending-box" *ngFor="let movie of acclaimed">
+      <article class="card">
+        <img
+          class="card__background"
+          [src]="movie.image"
+          [alt]="movie.movie_title"
+          width="1920"
+          height="2193"
+        />
+        <div class="card__content | flow">
+          <div class="card__content--container | flow">
+            <h2 class="card__title">{{ movie.movie_title }}</h2>
+            <p class="card__description">
+              {{ movie.description }}
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,59 @@
+header {
+  background: #1e1f25e8;
+  position: fixed;
+  z-index: 5;
+	align-items: center;
+  width: 100%;
+  top: 0;
+  justify-content: center;
+  display: block;
+}
+nav{
+	display: flex;
+	width: 100%;
+	text-align: center;
+ 
+}
+a {
+	padding: 1rem 2rem 1.15rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #ebebeb;
+  text-decoration: none;
+	min-width: 80px;
+	margin: auto;
+}
+
+a:hover {
+  background-image: url('https://clipart-library.com/images/BTgKzAGec.png');
+  background-size: 100% 100%;
+  color: #27262c;
+  filter: saturate(30%);
+  filter:hue-rotate(-60deg);
+  opacity: 0.6;
+  animation: spring 300ms ease-out;
+  text-shadow: 0 -1px 0 #ef816c;
+	font-weight: bold;
+}
+a:active {
+  transform: translateY(4px);
+}
+
+@keyframes spring {
+  15% {
+    -webkit-transform-origin: center center;
+    -webkit-transform: scale(1.2, 1.1);
+  }
+  40% {
+    -webkit-transform-origin: center center;
+    -webkit-transform: scale(0.95, 0.95);
+  }
+  75% {
+    -webkit-transform-origin: center center;
+    -webkit-transform: scale(1.05, 1);
+  }
+  100% {
+    -webkit-transform-origin: center center;
+    -webkit-transform: scale(1, 1);
+  }
+}

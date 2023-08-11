@@ -1,0 +1,239 @@
+<div class="box">
+  <div class="gradient">
+    <div class="sortBox">
+      <div class="card">
+        <div class="card-header">
+          <div class="btn-group-sm" role="group" aria-label="Basic example">
+            <button
+              type="button"
+              class="btn"
+              [ngClass]="{
+                highlight: isAscending,
+                unhighlight: isDescending
+              }"
+              (click)="arr('asc')"
+            >
+              Ascending
+            </button>
+            <button
+              type="button"
+              [ngClass]="{
+                highlight: isDescending,
+                unhighlight: isAscending
+              }"
+              class="btn"
+              (click)="arr('desc')"
+            >
+              Descending
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button
+              type="button"
+              class="btn"
+              [ngClass]="{
+                highlight: category == 'reserved_movie',
+                unhighlight: category != 'reserved_movie'
+              }"
+              (click)="sorted('reserved_movie')"
+            >
+              By Title
+            </button>
+            <button
+              type="button"
+              [ngClass]="{
+                highlight: category == 'date_reserved',
+                unhighlight: category != 'date_reserved'
+              }"
+              class="btn"
+              (click)="sorted('date_reserved')"
+            >
+              By Date
+            </button>
+            <button
+              type="button"
+              class="btn"
+              [ngClass]="{
+                highlight: category == 'name',
+                unhighlight: category != 'name'
+              }"
+              (click)="sorted('name')"
+            >
+              By Moviegoer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="projcard-container">
+      <div class="projcard projcard-blue" *ngFor="let info of reservations">
+        <div class="projcard-innerbox">
+          <span *ngFor="let x of movie_info">
+            <ng-container *ngIf="x.movie_title == info.reserved_movie">
+              <img [src]="x.image" class="projcard-img" />
+            </ng-container>
+          </span>
+          <div class="projcard-textbox">
+            <div class="projcard-title">{{ info.reserved_movie }}</div>
+            <div class="projcard-subtitle">
+              {{ info.date_reserved | date : "mediumDate" }} ||
+              {{ info.location }} || {{ info.time }}
+            </div>
+            <div class="projcard-bar"></div>
+            <div class="projcard-description">
+              <strong>Moviegoer : </strong>{{ info.name }}<br />
+              <strong>Email : </strong>{{ info.email }}<br /><strong
+                >Price :
+              </strong>
+              {{ info.total | currency : "PHP" }}<br /><strong
+                >Paid through :
+              </strong>
+              {{ info.payment_method }}
+            </div>
+            <div class="projcard-tagbox">
+              <div class="btn-group-sm" role="group" aria-label="Basic example">
+                <button
+                  class="btn"
+                  data-toggle="modal"
+                  data-target="#updateModal"
+                  id="edit"
+                  (click)="editReservation(info)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="30"
+                    fill="currentColor"
+                    class="bi bi-pencil-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"
+                    />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  class="btn"
+                  id="delete"
+                  (click)="deleteReservation(info.id)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="30"
+                    fill="currentColor"
+                    class="bi bi-trash-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats"></div>
+
+    <div
+      class="modal fade"
+      id="updateModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="row">
+              <div class="model-content">
+                <div class="profile-card-4 text-center">
+                  <ng-container *ngFor="let x of current_movie">
+                    <img [src]="x.image" class="img img-responsive" />
+                  </ng-container>
+                  <div class="profile-content">
+                    <form
+                      class="card-form"
+                      [formGroup]="updateForm"
+                      (ngSubmit)="updateInfo()"
+                    >
+                      <fieldset>
+                        <input
+                          type="text"
+                          name="name"
+                          class="name"
+                          placeholder="Full Name *"
+                          formControlName="name"
+                        />
+                        <input
+                          type="email"
+                          name="email"
+                          class="email"
+                          placeholder="Email *"
+                          formControlName="email"
+                        />
+
+                        <input
+                          type="date"
+                          name="date"
+                          class="date"
+                          formControlName="date_reserved"
+                        />
+
+                        <select name="location" formControlName="location">
+                          <option selected disabled>Choose Theatre...</option>
+                          <option
+                            *ngFor="let theatre of locations"
+                            [value]="theatre"
+                          >
+                            {{ theatre }}
+                          </option>
+                        </select>
+                        <select name="time" formControlName="time">
+                          <option selected disabled>Choose Time...</option>
+                          <option *ngFor="let time of screening" [value]="time">
+                            {{ time }}
+                          </option>
+                        </select>
+                      </fieldset>
+                      <button
+                        type="button"
+                        class="btn"
+                        data-dismiss="modal"
+                        id="close"
+                      >
+                        Close
+                      </button>
+                      <button
+                        type="submit"
+                        class="btn"
+                        id="update"
+                        [disabled]="!updateForm"
+                      >
+                        Update
+                      </button>
+                      <div
+                        *ngIf="updateForm.get('date_reserved').errors?.['futureDate']"
+                        class="error-message"
+                      >
+                        Please select a date from the present to the future.
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

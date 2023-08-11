@@ -1,0 +1,9 @@
+<div class="seat-layout">
+  <div *ngFor="let row of rows" class="seat-row">
+    <app-seat *ngFor="let column of columns" [seatNumber]="(row - 1) * columns.length + column"
+    [selectedSeats]="selectedSeats" 
+    [isSelect]="true"
+    (seatSelected)="onSeatSelected($event)"></app-seat>
+
+  </div>
+</div>

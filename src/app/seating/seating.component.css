@@ -1,0 +1,19 @@
+.seat-layout {
+  display: flex;
+  flex-direction: column;
+}
+
+.seat-row {
+  display: flex;
+}
+
+.seat {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+  margin: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}

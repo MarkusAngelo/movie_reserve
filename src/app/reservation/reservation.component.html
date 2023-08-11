@@ -1,0 +1,274 @@
+<div class="box">
+  <div class="gradient">
+    <div class="invoice">
+      <article>
+        <div class="heading">
+          <h1>{{ reserveForm.get("name").value }}</h1>
+          <p>{{ reserveForm.get("email").value }}</p>
+        </div>
+        <hr />
+        <h1>{{ reserveForm.get("reserved_movie").value }}</h1>
+        <ul>
+          <li>
+            <h3>
+              {{ reserveForm.get("date_reserved").value | date : "fullDate" }}
+            </h3>
+          </li>
+          <li>
+            <h3>
+              <p>{{ invoice_price | currency: 'PHP' }}</p>
+            </h3>
+          </li>
+          <li>
+            <h3>{{ reserveForm.get("location").value }}</h3>
+          </li>
+          <li>
+            <h3>{{ reserveForm.get("time").value }}</h3>
+          </li>
+        </ul>
+        <hr />
+        <h1>{{ reserveForm.get("payment_method").value }}</h1>
+        
+      </article>
+    </div>
+
+    <div #givenForm class="form-style-5">
+      <form [formGroup]="reserveForm" (ngSubmit)="ReserveInformation()">
+        <mat-tab-group animationDuration="500ms" class="tabgroup">
+          <mat-tab label="Information" class="info">
+            <fieldset>
+              <label>Full Name:</label>
+              <input
+                type="text"
+                name="name"
+                class="name"
+                placeholder="Full Name *"
+                formControlName="name"
+              />
+              <label>Email:</label>
+              <input
+                type="email"
+                name="email"
+                class="email"
+                placeholder="Email *"
+                formControlName="email"
+              />
+              <label>Date of Reservation:</label>
+              <input
+                type="date"
+                name="date_reserved"
+                class="date_reserved"
+                formControlName="date_reserved"
+              />
+              <div
+              *ngIf="reserveForm.get('date_reserved').errors?.['futureDate']"
+              class="error-message"
+            >
+              Please select a date from the present to 6 months from now.
+            </div>
+            </fieldset>
+            <button type="button" mat-button (click)="switchToTab(1)">
+              Next
+            </button>
+          </mat-tab>
+          <mat-tab label="Selection">
+            <input
+              type="text"
+              [(ngModel)]="searchedMovie"
+              formControlName="input"
+              (input)="onChange()"
+              placeholder="Search a Movie"
+            />
+            <fieldset>
+              <div class="movie_picker">
+                <label *ngFor="let movie of movie_list">
+                  <input
+                    type="radio"
+                    class="movieSelection"
+                    name="reserved_movie"
+                    formControlName="reserved_movie"
+                    [value]="movie.movie_title"
+                    (change)="onMovieSelection()"
+                  />
+                  <img
+                    [src]="movie.image"
+                    [alt]="movie.movie_title"
+                    class="poster"
+                  />
+                </label>
+              </div>
+              <div class="location">
+                <select formControlName="location" name="location">
+                  <option selected disabled>Choose Theatre...</option>
+                  <option *ngFor="let theatre of locations">
+                    {{ theatre }}
+                  </option>
+                </select>
+                <select formControlName="time" name="time">
+                  <option disabled>Choose Time...</option>
+                  <option *ngFor="let time of screening">
+                    {{ time }}
+                  </option>
+                </select>
+              </div>
+            </fieldset>
+            <button type="button" mat-button (click)="switchToTab(2)">
+              Next
+            </button></mat-tab
+          >
+          <mat-tab label="Payment"
+            ><fieldset>
+              <div class="payment_options">
+                <label for="mastercard">
+                  <input
+                    type="radio"
+                    class="pay_input"
+                    id="mastercard"
+                    value="Mastercard"
+                    formControlName="payment_method"
+                    name="payment_method"
+                  />
+                  <img
+                    src="https://orangemagazine.ph/wp-content/uploads/2015/07/MasterCard-Logo-e1438102419316.png"
+                    class="img-btn"
+                  />
+                </label>
+                <label for="gcash">
+                  <input
+                    type="radio"
+                    class="pay_input"
+                    id="gcash"
+                    value="GCash"
+                    formControlName="payment_method"
+                    name="payment_method"
+                  />
+                  <img
+                    src="https://1000logos.net/wp-content/uploads/2023/05/GCash-Logo.png"
+                    class="img-btn"
+                  />
+                </label>
+                <label for="cash">
+                  <input
+                    type="radio"
+                    class="pay_input"
+                    id="cash"
+                    value="Cash"
+                    formControlName="payment_method"
+                    name="payment_method"
+                  />
+                  <img
+                    src="https://cdn1.vectorstock.com/i/1000x1000/84/65/hand-give-money-icon-flat-style-vector-27498465.jpg"
+                    class="img-btn"
+                  />
+                </label>
+                <section class="payment_body">
+                  <div
+                    id="cash_form"
+                    *ngIf="reserveForm.get('payment_method').value == 'Cash'"
+                  >
+                    Generate your Code below and present it alongside the
+                    receipt for your ticket
+
+                    <button type="button" (click)="generateCode()">
+                      Generate
+                    </button>
+                    {{ randomCode }}
+                  </div>
+                </section>
+                <section class="payment_body">
+                  <form
+                    [formGroup]="mastercardForm"
+                    id="mastercard_form"
+                    *ngIf="
+                      reserveForm.get('payment_method').value == 'Mastercard'
+                    "
+                  >
+                    <label for="card_no">Card Number</label>
+                    <input
+                      type="number"
+                      formControlName="card_no"
+                      name="card_no"
+                      id="card_no"
+                      class="payment_input"
+                    />
+                    <label for="cardHolder">Card Holder</label>
+                    <input
+                      type="text"
+                      id="cardHolder"
+                      formControlName="cardHolder"
+                      class="payment_input"
+                    />
+                    <label for="expDate">Expiration Date</label>
+                    <input type="date" id="expDate" formControlName="expDate" />
+                    <label for="card_verify">CVV/CVC</label>
+                    <input type="number" formControlName="card_verify" />
+
+                    <div
+                      *ngIf="
+                        mastercardForm.controls['card_no'].invalid &&
+                        mastercardForm.controls['card_no'].touched &&
+                        mastercardForm.controls['cardHolder'].invalid &&
+                        mastercardForm.controls['cardHolder'].touched
+                      "
+                    >
+                      <p class="error-message">
+                        Invalid credit card credentials
+                      </p>
+                    </div>
+
+                    <div
+                      *ngIf="mastercardForm.get('expDate').errors?.['futureDate']"
+                      class="error-message"
+                    >
+                      Please select a date from the present to the future.
+                    </div>
+                  </form>
+                </section>
+                <section class="payment_body">
+                  <form
+                    [formGroup]="gcashForm"
+                    id="gcash_form"
+                    *ngIf="reserveForm.get('payment_method').value == 'GCash'"
+                  >
+                    <label for="phoneNum">Phone Number</label>
+                    <input
+                      type="tel"
+                      formControlName="phoneNum"
+                      name="phoneNum"
+                      id="phoneNum"
+                    />
+                    <label for="g_username">Username</label>
+                    <input
+                      type="text"
+                      id="g_username"
+                      formControlName="g_username"
+                    />
+                    <label for="mpin">MPIN</label>
+                    <input type="number" formControlName="mpin" />
+
+                    <div
+                      *ngIf="
+                        gcashForm.controls['phoneNum'].invalid &&
+                        gcashForm.controls['phoneNum'].touched &&
+                        gcashForm.controls['mpin'].invalid &&
+                        gcashForm.controls['mpin'].touched
+                      "
+                    >
+                      <p class="error-message">Invalid GCash Credentials</p>
+                    </div>
+                  </form>
+                </section>
+              </div>
+              <button
+                type="submit"
+                
+              >
+                Submit
+              </button>
+            </fieldset>
+          </mat-tab>
+        </mat-tab-group>
+      </form>
+    </div>
+  </div>
+</div>

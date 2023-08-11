@@ -1,0 +1,143 @@
+a,
+a:hover,
+a:focus {
+  color: inherit;
+}
+
+.box{
+  background-color: rgba(23, 23, 23, 0.989);
+  min-height: 100vh;
+}
+
+.invoice {
+  width: 20%;
+}
+
+.profile-card-4 {
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: rgba(255, 0, 0, 0.2) 0px 2px 8px 0px;
+  overflow: hidden;
+  position: relative;
+
+  display: flex;
+  margin: 10px auto;
+  width: 48%;
+  padding: 0;
+}
+
+.profile-card-4 img {
+  transition:  0.5s ;
+  object-fit: cover;
+  width: 500px;
+
+}
+
+.profile-content h2:hover{
+  color: #d1161f;
+}
+
+.profile-card-4 .profile-content {
+  position: relative;
+  padding: 15px;
+  background-color: #fff;
+}
+
+.profile-card-4 .profile-name {
+  font-weight: bold;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: -70px;
+  color: #fff;
+  font-size: 17px;
+}
+
+.profile-card-4 .profile-name p {
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+}
+
+.profile-card-4 .profile-description {
+  color: #777;
+  padding: 10px;
+}
+.profile-description h6, .text-muted {
+  font-size: 0.9rem;
+}
+
+.profile-content h2 {
+  font-size: 1.6rem;
+  transition: 0.3s;
+}
+
+.profile-card-4 .profile-overview {
+  padding: 15px 0px;
+}
+
+.profile-card-4 .profile-overview p {
+  font-size: 10px;
+  font-weight: 600;
+  color: #777;
+}
+
+.profile-card-4 .profile-overview h4 {
+  color: #273751;
+  font-weight: bold;
+}
+
+.profile-card-4 .profile-content::before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  top: -10px;
+  left: 0px;
+  right: 0px;
+  background-color: #fff;
+  z-index: 0;
+  transform: skewY(3deg);
+}
+
+.profile-card-4 img:hover {
+    filter: brightness(50%);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+
+
+
+  .buttons {
+    padding: 4% 1% 1.5% 1%;
+  }
+
+
+  .highlight {
+    background-color: #e5091470;
+    border: 0;
+  }
+
+  .unhighlight {
+    background-color: rgba(255, 255, 255, 0.738);
+  }
+  .buttons button {
+    border: 0;
+    min-width: 5rem;
+    color: rgb(4.5, 4.5, 4.5, 0.989);
+    font-weight: 350;
+    border-radius: 0;
+    border-left: 1px solid rgb(223, 215, 215);
+    box-shadow: #fe000033 0px 2px 8px 0px;
+  }
+  .buttons button:hover {
+    background-color: #e5091470;
+    color: rgba(213, 207, 207, 0.765);
+    border-left: 1px solid transparent;
+    box-shadow: rgba(255, 0, 0, 0.56) 0px 22px 70px 4px;
+  }
+  .buttons h2 {
+    margin: 1% 0;
+    display: flex;
+    color: #e5091470;
+  }
+  

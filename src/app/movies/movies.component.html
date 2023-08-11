@@ -1,0 +1,157 @@
+<div class="box">
+  <div class="buttons">
+    <h2>
+      SORT: &nbsp;
+      <div class="btn-group-sm" role="group" aria-label="Basic example">
+        <button
+          type="button"
+          class="btn"
+          [ngClass]="{
+            highlight: isAscending,
+            unhighlight: isDescending
+          }"
+          (click)="arr('asc')"
+        >
+          Ascending
+        </button>
+        <button
+          type="button"
+          [ngClass]="{
+            highlight: isDescending,
+            unhighlight: isAscending
+          }"
+          class="btn"
+          (click)="arr('desc')"
+        >
+          Descending
+        </button>
+      </div>
+    </h2>
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        [ngClass]="{
+          highlight: category == 'movie_title',
+          unhighlight: category != 'movie_title'
+        }"
+        (click)="sorted('movie_title')"
+      >
+        By Title
+      </button>
+      <button
+        type="button"
+        [ngClass]="{
+          highlight: category == 'year',
+          unhighlight: category != 'year'
+        }"
+        class="btn"
+        (click)="sorted('year')"
+      >
+        By Year
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        [ngClass]="{
+          highlight: category == 'score',
+          unhighlight: category != 'score'
+        }"
+        (click)="sorted('score')"
+      >
+        By Ratings
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        [ngClass]="{
+          highlight: category == 'ticket_price',
+          unhighlight: category != 'ticket_price'
+        }"
+        (click)="sorted('ticket_price')"
+      >
+        By Price
+      </button>
+    </div>
+    <h2>
+      GENRE: &nbsp;
+      <div class="btn-group-sm" role="group" aria-label="Basic example">
+        <button
+          type="button"
+          class="btn"
+          [ngClass]="{
+            highlight: isStrict,
+            unhighlight: isLenient
+          }"
+          (click)="how('strict')"
+        >
+          Strict
+        </button>
+        <button
+          type="button"
+          [ngClass]="{
+            highlight: isLenient,
+            unhighlight: isStrict
+          }"
+          class="btn"
+          (click)="how('lenient')"
+        >
+          Lenient
+        </button>
+      </div>
+    </h2>
+    <div
+      class="btn-group"
+      role="group"
+      aria-label="Basic example"
+      *ngFor="let x of genres"
+    >
+      <button
+        type="button"
+        class="btn"
+        [ngClass]="{
+          highlight: currentGenres.includes(x),
+          unhighlight: !currentGenres.includes(x)
+        }"
+        (click)="filterGenre(x)"
+      >
+        {{ x }}
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="profile-card-4 text-center" *ngFor="let movie of movies">
+      <img [src]="movie.image" class="img img-responsive" />
+      <div class="profile-content">
+        <h2>{{ movie.movie_title }}</h2>
+        <p class="text-muted">{{ movie.year }} || {{ movie.genre }}</p>
+        <hr />
+        <div class="profile-description">
+          <h6>{{ movie.description }}</h6>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <div class="profile-overview">
+              <h5>IMDB Rating</h5>
+              <h5 class="text-muted">{{ movie.score }} / 10</h5>
+            </div>
+          </div>
+          <div class="col-xs-4">
+            <div class="profile-overview">
+              <h5>Showing in</h5>
+              <h5 class="text-muted">{{ movie.availability }}</h5>
+            </div>
+          </div>
+          <div class="col-xs-4">
+            <div class="profile-overview">
+              <h5>Tickets</h5>
+              <h5 class="text-muted">
+                {{ movie.ticket_price | currency : "PHP" }}
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

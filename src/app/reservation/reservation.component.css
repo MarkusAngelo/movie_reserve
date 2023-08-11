@@ -1,0 +1,225 @@
+.box {
+  background-image: url('https://images.unsplash.com/photo-1485095329183-d0797cdc5676?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D%');
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+
+  min-height:100vh;
+}
+.gradient {
+  background-color: rgba(0, 0, 0, 0.659);
+  min-height: 100vh;
+  padding: 4%;
+}
+
+fieldset {
+  margin: 1%;
+}
+.form-style-5 {
+  width: 65%;
+  padding: 10px 20px;
+  background: rgba(51, 49, 49, 0.837);
+  margin: 0 2%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  color: rgba(255, 247, 247, 0.665);
+  border-radius: 8px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.form-style-5 fieldset {
+  border: none;
+}
+.form-style-5 legend {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+.form-style-5 input[type="text"],
+.form-style-5 input[type="number"],
+.form-style-5 input[type="date"],
+.form-style-5 input[type="tel"],
+.form-style-5 input[type="email"],
+.form-style-5 select {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  outline: 0;
+  padding: 10px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  background-color: #e8eeef;
+  color: #393d3f;
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.form-style-5 input[type="text"]:focus,
+.form-style-5 input[type="date"]:focus,
+.form-style-5 input[type="datetime"]:focus,
+.form-style-5 input[type="email"]:focus,
+.form-style-5 input[type="number"]:focus,
+.form-style-5 input[type="search"]:focus,
+.form-style-5 input[type="time"]:focus,
+.form-style-5 input[type="url"]:focus,
+.form-style-5 textarea:focus,
+.form-style-5 select:focus {
+  background: #d2d9dd;
+}
+.form-style-5 select {
+  -webkit-appearance: menulist-button;
+  height: 35px;
+}
+
+.form-style-5 [type="submit"],
+.form-style-5 input[type="button"], .form-style-5 button {
+  position: relative;
+  display: block;
+  padding: 19px 39px 18px 39px;
+  color: #fff;
+  margin: 0 auto;
+  background: #612222f4;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  width: 100%;
+  border: 0;
+  transition: 0.3s;
+  border-width: 1px 1px 3px;
+  margin-bottom: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.form-style-5 input[type="submit"]:hover,
+.form-style-5 input[type="button"]:hover , .form-style-5 button:hover{
+  background: #200707b5;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+/* HIDE RADIO */
+.movieSelection, .pay_input
+ {
+  opacity: 0;
+  width: 0;
+  height: 0;
+
+}
+
+.movie_picker,
+.payment-options {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* IMAGE STYLES */
+.poster {
+  cursor: pointer;
+  width: 95%;
+  object-fit: cover;
+  width: 230px;
+  margin-top: 1%;
+  min-height: 40vh;
+  max-height: 40vh;
+}
+
+.payment-options label{
+  margin: 0 5%;
+}
+
+
+.img-btn {
+  cursor: pointer;
+  object-fit: cover;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  width: 98%;
+  max-width: 20vh;
+  max-height: 10vh;
+  min-height: 10vh;
+  background-color: white;;
+  margin: 2%;
+  min-width: 15vh;
+}
+
+
+/* CHECKED STYLES */
+[type="radio"]:checked + img {
+  outline: 4px solid #612222f4;
+}
+
+.timeButton {
+  color: black;
+  background-color: white;
+}
+
+
+
+select {
+  width: 40%;
+  margin: 1%;
+}
+
+.location {
+  display: flex;
+}
+
+.heading p {
+  text-indent: 5%;
+}
+
+.invoice h1 {
+  color: #c01016a7;
+}
+
+
+.invoice {
+  position: fixed;
+  min-height: 80vh;
+  width: 25%;
+  z-index: 5;
+  left: 70%;
+  border-radius: 20px;
+  color: rgba(255, 255, 255, 0.883);
+  padding: 2%;
+  background-color: rgba(0, 0, 0, 0.852);
+}
+
+/* seat.component.css */
+.seat {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+  margin: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: #009688;
+  color: white;
+}
+
+/* seat-layout.component.css */
+.seat-layout {
+  display: flex;
+  flex-direction: column;
+}
+
+.seat-row {
+  display: flex;
+}
+
+ul,
+li {
+  list-style-type: none;
+}
+
+.payment_body{
+  margin: 2%;
+}
